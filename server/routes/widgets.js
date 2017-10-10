@@ -22,21 +22,54 @@ router.post('/', function (req, res) {
 
 module.exports = router
 
-var myCurry = {
+var curry = {
+  helloCurry: function (name) {
+    this.greetDeeplyCurried("Hello")(", ")(name)
+  },
+  awkwardCurry: function (name) {
+    this.greetDeeplyCurried('Hello')('...')('?')(name)
+  },
   greetDeeplyCurried: function (greeting) {
+    // var greeting = this.init.arguments[arguments.length - 1]
     return function (separator) {
       return function (emphasis) {
         return function (name) {
-          console.log(greeting + separator + name + emphasis)
+          console.log(greeting + separator + name + emphasis);
+          // console.log('greeting: ' + greeting + ', separator: ' + separator + ', name: ' + name + ', emphasis: ' + emphasis)
         }
       }
     }
-  },
-  greetAwkwardly: function () {
-    this.greetDeeplyCurried('Hello')('...')('?')
   }
-}
+};
 
-console.log(myCurry.greetAwkwardly('Heidi', 'Bob'))
+// Pass in name.
+curry.helloCurry('.')('Heidi');
+curry.awkwardCurry('Heidi');
 
-myCurry.greetAwkwardly('Heidi', 'Bob')
+// var runApp = {
+//   init: function () {
+//     this.run()
+//   },
+//   run: function () {
+//     alert("It's running!");
+//   }
+// };
+
+// var greetDeeplyCurried = function (greeting) {
+//   return function (separator) {
+//     return function (emphasis) {
+//       return function (name) {
+//         console.log(greeting + separator + name + emphasis);
+//       };
+//     };
+//   };
+// };
+
+// var greetAwkwardly = greetDeeplyCurried("Hello")("...")("?");
+// greetAwkwardly("Heidi");
+
+// var sayHello = greetDeeplyCurried("Hello")(", ");
+// sayHello(".")("Heidi");
+
+// var askHello = sayHello("?");
+// askHello("Heidi");

@@ -4,7 +4,13 @@ var router = express.Router()
 var db = require('../db')
 
 router.get('/', function (req, res) {
-  res.json(db.getWidgets())
+  db.getWidgets()
+    .then(widgets => {
+      res.json(widgets)
+    })
+    .catch(err => {
+      res.status(500).send(err.message)
+    })
 })
 
 router.post('/', function (req, res) {

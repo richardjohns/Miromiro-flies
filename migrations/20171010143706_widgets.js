@@ -1,5 +1,5 @@
 
-exports.up = function(knex, Promise) {
+exports.up = function (knex, Promise) {
   return knex.schema.createTable('widgets', function (table) {
     table.integer('id')
     table.string('name')
@@ -7,9 +7,8 @@ exports.up = function(knex, Promise) {
     table.string('mfg')
     table.increments('inStock')
   })
-};
+}
 
-exports.down = function(knex, Promise) {
+exports.down = function (knex, Promise) {
   return knex.schema.dropTable('widgets')
-
-};
+}

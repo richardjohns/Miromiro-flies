@@ -9,6 +9,7 @@ export function getWidgets (callback) {
       if (err) {
         callback(err)
       } else {
+        console.log('This is res.body', res.body)
         callback(null, res.body)
       }
     })

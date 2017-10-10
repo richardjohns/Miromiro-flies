@@ -21,3 +21,22 @@ router.post('/', function (req, res) {
 })
 
 module.exports = router
+
+var myCurry = {
+  greetDeeplyCurried: function (greeting) {
+    return function (separator) {
+      return function (emphasis) {
+        return function (name) {
+          console.log(greeting + separator + name + emphasis)
+        }
+      }
+    }
+  },
+  greetAwkwardly: function () {
+    this.greetDeeplyCurried('Hello')('...')('?')
+  }
+}
+
+console.log(myCurry.greetAwkwardly('Heidi', 'Bob'))
+
+myCurry.greetAwkwardly('Heidi', 'Bob')

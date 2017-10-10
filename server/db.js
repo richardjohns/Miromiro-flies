@@ -34,6 +34,7 @@ function getWidgets () {
 
 function saveWidget (widget) {
   return knex('widgets')
+  // 5. inserts widget with the fields provided.
     .insert({
       name: widget.name,
       price: widget.price,

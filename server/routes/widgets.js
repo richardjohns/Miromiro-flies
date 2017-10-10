@@ -15,7 +15,9 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
   db.saveWidget(req.body)
-  res.sendStatus(200)
+  // 4. consumes the API
+    .then(() => res.sendStatus(201))
+  // 6. returns positive status as a response to the API.
 })
 
 module.exports = router

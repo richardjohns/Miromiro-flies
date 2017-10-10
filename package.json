@@ -1,15 +1,21 @@
 {
-  "name": "boilerplate-react-webpack",
+  "name": "knexfile",
   "version": "0.1.1",
   "description": "A webpack React starter",
-  "repository": "https://github.com/dev-academy-challenges/boilerplate-react-webpack.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-academy-challenges/boilerplate-react-webpack.git"
+  },
   "main": "server/index.js",
   "scripts": {
     "dev": "nodemon --watch server server/index & webpack --watch",
     "dev-client": "webpack-dev-server --hot --inline --content-base public",
     "dev-server": "nodemon --watch server server/index",
     "test": "ava -v 'test/**/*.test.js'",
-    "start": "node server/index"
+    "start": "node server/index",
+    "knex": "knex",
+    "sqlite3": "sqlite3",
+    "setup": "npm run knex migrate:rollback && npm run knex migrate:latest && npm run knex seed:run"
   },
   "ava": {
     "require": "babel-register",
@@ -46,6 +52,15 @@
     "body-parser": "^1.15.2",
     "cors": "^2.7.1",
     "express": "^4.14.0",
+    "knex": "^0.13.0",
+    "sqlite3": "^3.1.13",
     "superagent": "^2.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/dev-academy-challenges/boilerplate-react-webpack/issues"
+  },
+  "homepage": "https://github.com/dev-academy-challenges/boilerplate-react-webpack#readme",
+  "directories": {
+    "test": "test"
   }
 }

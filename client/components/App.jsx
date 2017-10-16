@@ -13,20 +13,24 @@ export default class App extends React.Component {
     this.state = {
       error: null,
       widgets: [],
-      activeWidget: null,
-      detailsVisible: false,
-      addWidgetVisible: false
+      users: [],
+      beers: [],
+      // activeWidget: null,
+      // detailsVisible: false,
+      // addWidgetVisible: false
     }
+    getWidgets(this.renderWidgets.bind(this))
   }
 
   componentDidMount () {
     this.refreshList()
   }
 
-  renderWidgets (err, widgets) {
+  renderWidgets (err, widgets, users) {
     this.setState({
       error: err,
-      widgets: widgets || []
+      widgets: widgets || [],
+      users: users || []
     })
   }
 
@@ -35,7 +39,6 @@ export default class App extends React.Component {
       error: err,
       addWidgetVisible: false
     })
-    getWidgets(this.renderWidgets.bind(this))
   }
 
   showAddWidget () {
@@ -61,11 +64,30 @@ export default class App extends React.Component {
     return (
       <div>
         <ErrorMessage error={this.state.error} />
-        <h1>Widgets FTW!</h1>
 
+        <div>
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item" href="/">
+                <img class="headerimg" src="/images/2beers.png"></a>
+                <div class="navbar-start">
+                  <h1 class="title headertitle">Hold My Beer...</h1>
+                </div>
+
+                <button class="button navbar-burger">
+                  <span><a href="/">Home</a></span>
+                  <span>Users</span>
+                  <span>Beers</span>
+                  <span>Nuisance</span>
+                </button>
+            </div>
+        </nav>  
+        </div>
+
+{/* 
         <WidgetList
           showDetails={this.showDetails.bind(this)}
-          widgets={this.state.widgets} />
+          widgets={this.state.widgets} /> */}
 
         <p><a id='show-widget-link' href='#' onClick={(e) => this.showAddWidget(e)}>Add widget</a></p>
 

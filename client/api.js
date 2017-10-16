@@ -1,7 +1,9 @@
 import request from 'superagent'
 
 var widgetUrl = 'http://localhost:3000/widgets'
-var userUrl = 'http://localhost:3000/users'
+var usersUrl = 'http://localhost:3000/users'
+var beersUrl = 'http://localhost:3000/users'
+
 
 export function getWidgets (callback) {
   request
@@ -18,12 +20,25 @@ export function getWidgets (callback) {
 
 export function getUsers(callback) {
   request
-    .get(userUrl)
+    .get(usersUrl)
     .end((err, res) => {
       if (err) {
         callback(err)
       } else {
         console.log('This is getUsers res.body', res.body)
+        callback(null, res.body)
+      }
+    })
+}
+
+export function getBeers(callback) {
+  request
+    .get(beersUrl)
+    .end((err, res) => {
+      if (err) {
+        callback(err)
+      } else {
+        console.log('This is getBeers res.body', res.body)
         callback(null, res.body)
       }
     })

@@ -5,6 +5,8 @@ import WidgetList from './WidgetList'
 import WidgetDetails from './WidgetDetails'
 import ErrorMessage from './ErrorMessage'
 import Header from './Header'
+import Homehero from './Homehero'
+import Statslevel from './Statslevel'
 
 import {getWidgets, getUsers} from '../api'
 
@@ -67,6 +69,8 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
+        <Homehero />
+        <Statslevel />
 
         <ErrorMessage error={this.state.error} />
 

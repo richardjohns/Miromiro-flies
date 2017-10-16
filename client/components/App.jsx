@@ -4,8 +4,9 @@ import AddWidget from './AddWidget'
 import WidgetList from './WidgetList'
 import WidgetDetails from './WidgetDetails'
 import ErrorMessage from './ErrorMessage'
+import Header from './Header'
 
-import {getWidgets} from '../api'
+import {getWidgets, getUsers} from '../api'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -13,20 +14,26 @@ export default class App extends React.Component {
     this.state = {
       error: null,
       widgets: [],
+      users: [],
+      beers: [],
       activeWidget: null,
       detailsVisible: false,
       addWidgetVisible: false
     }
+    getWidgets(this.renderWidgets.bind(this))
+    getUsers(this.renderWidgets.bind(this))
+
   }
 
   componentDidMount () {
     this.refreshList()
   }
 
-  renderWidgets (err, widgets) {
+  renderWidgets (err, widgets, users) {
     this.setState({
       error: err,
-      widgets: widgets || []
+      widgets: widgets || [],
+      users: users || []
     })
   }
 
@@ -35,7 +42,6 @@ export default class App extends React.Component {
       error: err,
       addWidgetVisible: false
     })
-    getWidgets(this.renderWidgets.bind(this))
   }
 
   showAddWidget () {
@@ -60,12 +66,13 @@ export default class App extends React.Component {
   render () {
     return (
       <div>
-        <ErrorMessage error={this.state.error} />
-        <h1>Widgets FTW!</h1>
+        <Header />
 
-        <WidgetList
-          showDetails={this.showDetails.bind(this)}
-          widgets={this.state.widgets} />
+        <ErrorMessage error={this.state.error} />
+
+         <WidgetList
+           showDetails={this.showDetails.bind(this)}
+           widgets={this.state.widgets} /> */}
 
         <p><a id='show-widget-link' href='#' onClick={(e) => this.showAddWidget(e)}>Add widget</a></p>
 

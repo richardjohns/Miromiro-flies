@@ -16,13 +16,16 @@ export default class AddWidget extends React.Component {
   fieldChanged (e) {
     e.preventDefault()
     this.setState({
+      // watches field changes, sets state.
       [e.target.name]: e.target.value
     })
   }
 
   addWidget (e) {
-    e.preventDefault()
+    // 1. addWidget is an event handler - monitoring browser.
+    e.preventDefault() // event handler
     const widget = this.state
+    // 2. calls appendWidget in api.js
     appendWidget(widget, this.props.finishAdd)
   }
 
@@ -47,7 +50,10 @@ export default class AddWidget extends React.Component {
             value={this.state.inStock}
             /></p>
           <button onClick={e => this.addWidget(e)}>Add widget</button> {' '}
-          <a href='#' onClick={this.props.finishAdd}>Cancel</a>
+          <a href='#' onClick={this.props.finishAdd}
+          >Cancel</a>
+          // 8. page refreshes via finishAdd once positive 201 message received.
+          // 1. button calls addWidget with 
         </form>
       </div>
     )

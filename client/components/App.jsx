@@ -7,6 +7,7 @@ import ErrorMessage from './ErrorMessage'
 import Header from './Header'
 import Homehero from './Homehero'
 import Statslevel from './Statslevel'
+import Leaderboard from './Leaderboard'
 
 import {getWidgets, getUsers} from '../api'
 
@@ -66,11 +67,13 @@ export default class App extends React.Component {
   }
 
   render () {
+    console.log(this.state)
     return (
       <div>
         <Header />
         <Homehero />
         <Statslevel />
+        <Leaderboard users={this.state.users} />
 
         <ErrorMessage error={this.state.error} />
 

@@ -6,7 +6,7 @@ export default (props) => {
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="/">
-                <img className="headerimg" src="/images/2beers.png"></a>
+                <img className="headerimg" src="/images/2beers.png" /></a>
                     <div className="navbar-start">
                         <h1 className="title headertitle">Hold My Beer...</h1>
                     </div>

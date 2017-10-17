@@ -8,6 +8,7 @@ import Header from './Header'
 import Homehero from './Homehero'
 import Statslevel from './Statslevel'
 import Leaderboard from './Leaderboard'
+import Footer from './Footer'
 
 import {getWidgets, getUsers} from '../api'
 
@@ -33,6 +34,9 @@ export default class App extends React.Component {
   }
 
   renderWidgets (err, widgets, users) {
+    console.log('This is renderWidgets widgets: ',widgets)
+    console.log('This is renderWidgets users: ', users)
+
     this.setState({
       error: err,
       widgets: widgets || [],
@@ -54,6 +58,7 @@ export default class App extends React.Component {
   }
 
   showDetails (widget) {
+    console.log('This is showDetails widgets: ',widget)
     this.setState({
       activeWidget: widget,
       detailsVisible: true
@@ -67,30 +72,15 @@ export default class App extends React.Component {
   }
 
   render () {
-    console.log(this.state)
     return (
       <div>
         <Header />
         <Homehero />
         <Statslevel />
-        <Leaderboard users={this.state.users} />
-
         <ErrorMessage error={this.state.error} />
+        <Leaderboard users={this.state.widgets} />
 
-         <WidgetList
-           showDetails={this.showDetails.bind(this)}
-           widgets={this.state.widgets} /> */}
-
-        <p><a id='show-widget-link' href='#' onClick={(e) => this.showAddWidget(e)}>Add widget</a></p>
-
-        {this.state.addWidgetVisible && <AddWidget
-          finishAdd={this.refreshList.bind(this)} />}
-
-        {this.state.detailsVisible && <WidgetDetails
-          isVisible={this.state.detailsVisible}
-          hideDetails={this.hideDetails.bind(this)}
-          widget={this.state.activeWidget} />}
-
+        <Footer />
       </div>
     )
   }

@@ -12,7 +12,7 @@ export function getWidgets (callback) {
       if (err) {
         callback(err)
       } else {
-        console.log('This is getWidgets res.body', res.body)
+        // console.log('This is getWidgets res.body', res.body)
         callback(null, res.body)
       }
     })
@@ -25,7 +25,7 @@ export function getUsers(callback) {
       if (err) {
         callback(err)
       } else {
-        console.log('This is getUsers res.body', res.body)
+        // console.log('This is getUsers res.body', res.body)
         callback(null, res.body)
       }
     })
@@ -38,7 +38,7 @@ export function getBeers(callback) {
       if (err) {
         callback(err)
       } else {
-        console.log('This is getBeers res.body', res.body)
+        // console.log('This is getBeers res.body', res.body)
         callback(null, res.body)
       }
     })

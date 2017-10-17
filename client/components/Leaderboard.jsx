@@ -1,31 +1,33 @@
 import React from 'react' 
-export default (props) => { 
-    return (
+
+const Leaderboard =(props) => (
+    // return (
 <div>
     <div className="container">
         <h2>Hall of Fame...</h2>
         <br/>
+
     </div>
 
-    {props.users.map(user => {
-
-    <div className="container">
+    {/* {console.log('This is Leaderboard props: ', props)} */}
+    {props.users.map((user) => {
+    // {console.log('this is user: ',user)}
+    <div>
         <div>
-
             <article className="media">
                 <figure className="media-left">
                     <p className="image is-96x96">
                         <a href="/users/${id}">
-                            <img src={usrimage} /> </a>
+                            <img src={user.usrimage} /> </a>
                     </p>
                 </figure>
                 <div className="media-content">
                     <div className="content">
                         <p>
-                            <strong>{name}</strong>
-                            <small>"${alias}"</small>
-                            <br/> Superpower: {superpower}
-                            <br/> {backStory}
+                            <strong>{user.name}</strong>
+                            <small>"${user.alias}"</small>
+                            <br/> Superpower: {user.superpower}
+                            <br/> {user.backStory}
                         </p>
                     </div>
                     <nav className="level is-mobile">
@@ -47,10 +49,10 @@ export default (props) => {
                             </a>
                             <small>
                                 <span className="icon">
-                                    <a href="https://github.com/${github}">
+                                    <a href={`https://github.com/${user.github}`}>
                                         <i className="fa fa-github"></i>
                                     </a>
-                                </span> {github}
+                                </span> {user.github}
                             </small>
                         </div>
                     </nav>
@@ -62,9 +64,11 @@ export default (props) => {
         </div>
         <hr /> 
     </div>
-            } 
+         } 
         ) 
     }
 </div>
         ) 
-    }
+    
+
+export default Leaderboard

@@ -3,16 +3,17 @@ import React from 'react'
 const Leaderboard =(props) => (
     // return (
 <div>
-    <div className="container">
+    <div className="">
         <h2>Hall of Fame...</h2>
         <br/>
 
     </div>
 
     {/* {console.log('This is Leaderboard props: ', props)} */}
-    {props.users.map((user) => {
+    {props.users.map((user, i) => {
+        return (
     // {console.log('this is user: ',user)}
-    <div>
+    <div key={i}>
         <div>
             <article className="media">
                 <figure className="media-left">
@@ -25,7 +26,7 @@ const Leaderboard =(props) => (
                     <div className="content">
                         <p>
                             <strong>{user.name}</strong>
-                            <small>"${user.alias}"</small>
+                            <small>  "{user.alias}"</small>
                             <br/> Superpower: {user.superpower}
                             <br/> {user.backStory}
                         </p>
@@ -64,6 +65,7 @@ const Leaderboard =(props) => (
         </div>
         <hr /> 
     </div>
+        )
          } 
         ) 
     }

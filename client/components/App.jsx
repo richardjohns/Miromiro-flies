@@ -9,8 +9,10 @@ import Homehero from './Homehero'
 import Statslevel from './Statslevel'
 import Leaderboard from './Leaderboard'
 import Footer from './Footer'
+import Beersandmeme from './Beersandmeme'
+// import Beers from './Beers'
 
-import {getWidgets, getUsers} from '../api'
+import {getWidgets, getUsers, getBeers} from '../api'
 
 export default class App extends React.Component {
   constructor (props) {
@@ -26,6 +28,8 @@ export default class App extends React.Component {
     }
     getWidgets(this.renderWidgets.bind(this))
     getUsers(this.renderWidgets.bind(this))
+    getBeers(this.renderWidgets.bind(this))
+
 
   }
 
@@ -33,14 +37,14 @@ export default class App extends React.Component {
     this.refreshList()
   }
 
-  renderWidgets (err, widgets, users) {
-    console.log('This is renderWidgets widgets: ',widgets)
-    console.log('This is renderWidgets users: ', users)
-
+  renderWidgets (err, widgets, users, beers) {
+    // console.log('This is renderWidgets widgets: ',widgets)
+    // console.log('This is renderWidgets users: ', users)
     this.setState({
       error: err,
       widgets: widgets || [],
-      users: users || []
+      users: users || [],
+      beers: beers || []
     })
   }
 
@@ -79,7 +83,8 @@ export default class App extends React.Component {
         <Statslevel />
         <ErrorMessage error={this.state.error} />
         <Leaderboard users={this.state.widgets} />
-
+        <Beersandmeme />
+        {/* <Beers beers={this.state.beers}/> */}
         <Footer />
       </div>
     )

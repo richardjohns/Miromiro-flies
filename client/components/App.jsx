@@ -72,7 +72,7 @@ export default class App extends React.Component {
         <Homehero />
         <Statslevel />
         <ErrorMessage error={this.state.error} />
-        <Leaderboard users={this.state.users} />
+        <Route exact path="/" component={() => <Leaderboard users={this.state.users} /> }/>
         <Beersandmeme />
         <Route exact path='/beers' render={() => {
           return <Beers beers={this.state.beers} />

@@ -21,11 +21,13 @@ const store = createStore(reducers,
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Provider store={store}>
-      <Router history={browserHistory}>
+      <Router>
+      {/* <Switch> */}
         <div>
         <Route path='/' component={App} />
-        <Route component={NoMatch} />
+        {/* <Route component={NoMatch} /> */}
         </div>
+        {/* </Switch> */}
       </Router>
     </Provider >,
     document.getElementById('app')

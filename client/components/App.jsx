@@ -68,12 +68,12 @@ export default class App extends React.Component {
   render () {
     return (
       <div>
-        <Header />
-        <Homehero />
-        <Statslevel />
+        <Route exact path="/" component={() => <Header />} />
+        <Route exact path="/" component={() => <Homehero />} />
+        <Route exact path="/" component={() => <Statslevel />} />
         <ErrorMessage error={this.state.error} />
-        <Route exact path="/" component={() => <Leaderboard users={this.state.users} /> }/>
-        <Beersandmeme />
+        <Route exact path="/" component={() => <Leaderboard users={this.state.users} /> } />
+        <Route exact path="/" component={() => <Beersandmeme /> } />
         <Route exact path='/beers' render={() => {
           return <Beers beers={this.state.beers} />
         }} /> 

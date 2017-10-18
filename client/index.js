@@ -22,13 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={browserHistory}>
-        {/* <Switch> */}
         <div>
-        <Route exact path='/' component={App} />
-        <Route exact path='/#/beers' component={Beers} /> 
-        <Route exact path='/beers' component={Beers} /> 
+        <Route path='/' component={App} />
         <Route component={NoMatch} />
-        {/* </Switch> */}
         </div>
       </Router>
     </Provider >,

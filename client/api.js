@@ -21,7 +21,7 @@ export function getUsers() {
 }
 
 export function getBeers() {
-  request
+  return request
     .get(beersUrl)
     .then(res => res.body)
     // .end((err, res) => {

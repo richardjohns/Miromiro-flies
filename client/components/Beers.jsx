@@ -3,11 +3,11 @@ import { Route, Link } from 'react-router-dom'
 import { getWidgets, getUsers, getBeers } from '../api'
 
 import Header from './Header'
-
 export default (props) => {
     return (
        
         <div className="container has-text-centered">
+            {console.log('This is beers props: ', props)}
             <Header />
             <hr />
             <div className="wrapper">
@@ -25,9 +25,9 @@ export default (props) => {
                         <div className="media-content">
                             <div className="content">
                                 <p>
-                                    <strong>{{ beer_type }} - </strong>
-                                    <small>{{ beer_brand }}</small>
-                                    <br /> {{ beer_bio }}
+                                    <strong>{beer.beer_type} - </strong>
+                                    <small>{beer.beer_brand}</small>
+                                    <br /> {beer.beer_bio}
                                 </p>
                             </div>
                             <nav className="level is-mobile">
@@ -48,7 +48,7 @@ export default (props) => {
                         <figure className="media-right">
                             <p className="image is-128x128">
                                 <a href="/beers/{{beer_id}}">
-                                    <img src="{{beer_image}}" width="100px" />
+                                    <img src={beer.beer_image} width="100px" />
                                 </a>
                             </p>
                         </figure>

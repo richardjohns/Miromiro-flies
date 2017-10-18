@@ -3,17 +3,19 @@ import React from 'react'
 const Leaderboard =(props) => (
     // return (
 <div>
+    {console.log('This is leaderboard props: ', props)
+    
+    }
     <div className="">
         <h2>Hall of Fame...</h2>
         <br/>
-
     </div>
 
     {/* {console.log('This is Leaderboard props: ', props)} */}
     {props.users.map((user, i) => {
         return (
-    // {console.log('this is user: ',user)}
     <div key={i}>
+        {console.log('this is leaderboard map user: ', user)}
         <div>
             <article className="media">
                 <figure className="media-left">

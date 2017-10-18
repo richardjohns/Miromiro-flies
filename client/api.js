@@ -1,63 +1,70 @@
 import request from 'superagent'
 
-var widgetUrl = 'http://localhost:3000/widgets'
-var usersUrl = 'http://localhost:3000/users'
-var beersUrl = 'http://localhost:3000/beers'
+var usersUrl = 'http://localhost:3000/v1/users'
+var beersUrl = 'http://localhost:3000/v1/beers'
 
-
-export function getWidgets (callback) {
-  request
-    .get(widgetUrl)
-    .end((err, res) => {
-      if (err) {
-        callback(err)
-      } else {
-        // console.log('This is getWidgets res.body', res.body)
-        callback(null, res.body)
-      }
-    })
+// only concerned with data
+// getUsers(Callback) don't use as using promises.
+export function getUsers() {
+  return request
+    .get(usersUrl)
+    .then(res => res.body)
+    // below is callback method, above is promises.
+    // .end((err, res) => {
+    //   if (err) {
+    //     callback(err)
+    //   } else {
+    //     console.log('This is getUsers res.body', res.body)
+    //     callback(null, res.body)
+    //   }
+    // })
 }
 
-export function getUsers(callback) {
-  request
-    .get(widgetUrl)
-    .end((err, res) => {
-      if (err) {
-        callback(err)
-      } else {
-        // console.log('This is getUsers res.body', res.body)
-        callback(null, res.body)
-      }
-    })
-}
-
-export function getBeers(callback) {
+export function getBeers() {
   request
     .get(beersUrl)
-    .end((err, res) => {
-      if (err) {
-        callback(err)
-      } else {
-        // console.log('This is getBeers res.body', res.body)
-        callback(null, res.body)
-      }
-    })
+    .then(res => res.body)
+    // .end((err, res) => {
+    //   if (err) {
+    //     callback(err)
+    //   } else {
+    //     console.log('This is getBeers res.body', res.body)
+    //     callback(null, res.body)
+    //   }
+    // })
 }
 
-export function appendWidget (widget, callback) {
-  // 3. appendWidget is called by addWidget in AddWidget Component.
-  request
-    .post(widgetUrl)
-    // ie post this data, and send it this widget.
-    .send(widget)
-    // 3. passes widget to server url (or router.post) as req.body
-    .end((err, res) => {
-      // 7. does response from router.post come back as a 500 (ie error), or 201 (all ok something created)
-      if (err) {
-        callback(err)
-      } else {
-        callback()
-        // 
-      }
-    })
-}
+// export function getUsers2() {
+//   return request.get(usersUrl)
+//     .then(data => {
+//       const users = data.body
+//       return users.map(user => {
+//         return Object.assign(
+//           {},
+//           user,
+//           { paragraphs: JSON.parse(user.paragraphs) }
+//         )
+//       })
+//     })
+//     .catch(err => {
+//       throw Error('You need to implement a post route!')
+//     })
+// }
+
+// export function appendWidget (widget, callback) {
+//   // 3. appendWidget is called by addWidget in AddWidget Component.
+//   request
+//     .post(widgetUrl)
+//     // ie post this data, and send it this widget.
+//     .send(widget)
+//     // 3. passes widget to server url (or router.post) as req.body
+//     .end((err, res) => {
+//       // 7. does response from router.post come back as a 500 (ie error), or 201 (all ok something created)
+//       if (err) {
+//         callback(err)
+//       } else {
+//         callback()
+//         // 
+//       }
+//     })
+// }

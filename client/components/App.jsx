@@ -1,8 +1,7 @@
 import React from 'react'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import AddWidget from './AddWidget'
-import WidgetList from './WidgetList'
-import WidgetDetails from './WidgetDetails'
+import Beers from './Beers'
 import ErrorMessage from './ErrorMessage'
 import Header from './Header'
 import Homehero from './Homehero'
@@ -10,68 +9,69 @@ import Statslevel from './Statslevel'
 import Leaderboard from './Leaderboard'
 import Footer from './Footer'
 import Beersandmeme from './Beersandmeme'
-// import Beers from './Beers'
 
-import {getWidgets, getUsers, getBeers} from '../api'
+import { getBeers, getUsers } from '../api'
 
 export default class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       error: null,
-      widgets: [],
       users: [],
       beers: [],
       activeWidget: null,
       detailsVisible: false,
       addWidgetVisible: false
     }
-    getWidgets(this.renderWidgets.bind(this))
-    getUsers(this.renderWidgets.bind(this))
-    getBeers(this.renderWidgets.bind(this))
-
-
+    console.log('This is this.state.beers: ', this.state.beers)
+    console.log('This is this.state.users: ', this.state.users)
+    // this.fetchBeerData = this.fetchBeerData.bind(this)
+    this.fetchUserData = this.fetchUserData.bind(this)
   }
 
-  componentDidMount () {
-    this.refreshList()
+  componentWillMount () {
+    // this.refreshList()
+    this.fetchUserData()
+    // this.fetchBeerData()
   }
 
-  renderWidgets (err, widgets, users, beers) {
-    // console.log('This is renderWidgets widgets: ',widgets)
-    // console.log('This is renderWidgets users: ', users)
+  // works with data to setState.
+  // getUsers is returning a promise, hence can use .then in fetchUserData
+  fetchUserData () {
+    return getUsers()
+    .then(users => {
+      this.setState({ users: users })
+    })
+    .catch(err => {
+      this.setState({ err: err })
+    })
+  }
+
+  fetchBeerData() {
+    return getBeers()
+      .then(beers => {
+        this.setState({ beers: beers })
+          .catch(err => {
+            this.setState({ err: err })
+          })
+      })
+  }
+
+  renderWidgets (err, users, beers) {
+  
     this.setState({
       error: err,
-      widgets: widgets || [],
       users: users || [],
       beers: beers || []
     })
   }
 
-  refreshList (err) {
+  refreshList (err, users, beers) {
     this.setState({
       error: err,
-      addWidgetVisible: false
-    })
-  }
-
-  showAddWidget () {
-    this.setState({
-      addWidgetVisible: true
-    })
-  }
-
-  showDetails (widget) {
-    console.log('This is showDetails widgets: ',widget)
-    this.setState({
-      activeWidget: widget,
-      detailsVisible: true
-    })
-  }
-
-  hideDetails () {
-    this.setState({
-      detailsVisible: false
+      addWidgetVisible: false,
+      users: users || [],
+      beers: beers || []
     })
   }
 
@@ -82,9 +82,10 @@ export default class App extends React.Component {
         <Homehero />
         <Statslevel />
         <ErrorMessage error={this.state.error} />
-        <Leaderboard users={this.state.widgets} />
+        <Leaderboard users={this.state.users} />
         <Beersandmeme />
-        {/* <Beers beers={this.state.beers}/> */}
+        <Route exact path='/#/beers' component={Beers} />
+        <Route exact path='/beers' component={Beers} /> 
         <Footer />
       </div>
     )

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Route, Link } from 'react-router-dom'
 import { getWidgets, getUsers, getBeers } from '../api'
+import { connect } from 'react-redux'
 
 import Header from './Header'
-export default (props) => {
+const Beers = (props) => {
     return (
        
         <div className="container has-text-centered">
@@ -52,33 +53,19 @@ export default (props) => {
                                 </a>
                             </p>
                         </figure>
-
-
-
-
-
-
-
                     </article>
                 )}
             )}
-
-
-
-
-
-
-
-
             </div>
         </div>
-
-
-
-
-
-
-
-
     )
 }
+
+const mapStateToProps = ({ users, beers }) => {
+    return {
+        users,
+        beers
+    };
+};
+
+export default connect(mapStateToProps)(Beers)

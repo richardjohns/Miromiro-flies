@@ -68,7 +68,7 @@ const Leaderboard =(props) => (
         ) 
     }
 </div>
-        ) 
+) 
     
 const mapStateToProps = ({ users, beers }) => {
     return {

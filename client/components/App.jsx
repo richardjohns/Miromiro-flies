@@ -23,8 +23,6 @@ export default class App extends React.Component {
       detailsVisible: false,
       addWidgetVisible: false
     }
-    // console.log('This is this.state.beers: ', this.state.beers)
-    // console.log('This is this.state.users: ', this.state.users)
     this.fetchBeerData = this.fetchBeerData.bind(this)
     this.fetchUserData = this.fetchUserData.bind(this)
   }
@@ -56,7 +54,6 @@ export default class App extends React.Component {
         this.setState({ err: err })
       })
   }
-
   render () {
     return (
       <div>
@@ -64,10 +61,10 @@ export default class App extends React.Component {
         <Route exact path="/" component={() => <Homehero />} />
         <Route exact path="/" component={() => <Statslevel />} />
         <ErrorMessage error={this.state.error} />
-        <Route exact path="/" component={() => <Leaderboard users={this.state.users} /> } />
+        <Route exact path="/" component={() => <Leaderboard /> } />
         <Route exact path="/" component={() => <Beersandmeme /> } />
         <Route exact path='/beers' render={() => {
-          return <Beers beers={this.state.beers} />
+          return <Beers />
         }} /> 
         <Footer />
       </div>

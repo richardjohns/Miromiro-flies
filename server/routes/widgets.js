@@ -1,7 +1,20 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
-var db = require('../db')
+const db = require('../db')
+const bodyParser = require('body-parser')
+
+router.use(bodyParser.json())
+
+// router.get('/', function (req, res) {
+//   db.getUsers()
+//     .then(users => {
+//       res.json(users)
+//     })
+//     .catch(err => {
+//       res.status(500).send(err.message)
+//     })
+// })
 
 router.get('/', function (req, res) {
   db.getWidgets()

@@ -3,17 +3,6 @@ const path = require('path')
 const config = require(path.join(__dirname, '/../knexfile')).development
 const knex = require('knex')(config)
 
-module.exports = {
-  getWidgets,
-  saveWidget,
-  getUser: getUser,
-  getUsers: getUsers,
-  getBeers: getBeers,
-  getUsersPerBeer: getUsersPerBeer,
-  getBeersPerUser: getBeersPerUser,
-  addBeers: addBeers
-}
-
 function getWidgets () {
   return knex('widgets').select()
 }
@@ -41,7 +30,6 @@ function getUser(id, connection) {
 }
 
 function getBeers() {
-  console.log('This is connection: ', connection);
   return knex('beers').select()
 }
 // return connection('beers').select()
@@ -72,3 +60,13 @@ function addBeers(beer, connection) {
   return knex('beers').insert(beer)
 }
 
+module.exports = {
+  getWidgets,
+  saveWidget,
+  getUser: getUser,
+  getUsers: getUsers,
+  getBeers: getBeers,
+  getUsersPerBeer: getUsersPerBeer,
+  getBeersPerUser: getBeersPerUser,
+  addBeers: addBeers
+}

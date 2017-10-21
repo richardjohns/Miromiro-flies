@@ -1,97 +1,74 @@
 import React from 'react'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import AddWidget from './AddWidget'
-import WidgetList from './WidgetList'
-import WidgetDetails from './WidgetDetails'
+import Beers from './Beers'
 import ErrorMessage from './ErrorMessage'
 import Header from './Header'
 import Homehero from './Homehero'
 import Statslevel from './Statslevel'
 import Leaderboard from './Leaderboard'
+import Footer from './Footer'
+import Beersandmeme from './Beersandmeme'
 
-import {getWidgets, getUsers} from '../api'
+import { getBeers, getUsers } from '../api'
 
 export default class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       error: null,
-      widgets: [],
       users: [],
       beers: [],
       activeWidget: null,
       detailsVisible: false,
       addWidgetVisible: false
     }
-    getWidgets(this.renderWidgets.bind(this))
-    getUsers(this.renderWidgets.bind(this))
-
+    this.fetchBeerData = this.fetchBeerData.bind(this)
+    this.fetchUserData = this.fetchUserData.bind(this)
   }
 
-  componentDidMount () {
-    this.refreshList()
+  componentWillMount () {
+    // this.refreshList()
+    this.fetchUserData()
+    this.fetchBeerData()
   }
 
-  renderWidgets (err, widgets, users) {
-    this.setState({
-      error: err,
-      widgets: widgets || [],
-      users: users || []
+  // works with data to setState.
+  // getUsers is returning a promise, hence can use .then in fetchUserData
+  fetchUserData () {
+    return getUsers()
+    .then(users => {
+      this.setState({ users: users })
+    })
+    .catch(err => {
+      this.setState({ err: err })
     })
   }
 
-  refreshList (err) {
-    this.setState({
-      error: err,
-      addWidgetVisible: false
-    })
+  fetchBeerData() {
+    return getBeers()
+      .then(beers => {
+        this.setState({ beers: beers })
+      })
+      .catch(err => {
+        this.setState({ err: err })
+      })
   }
-
-  showAddWidget () {
-    this.setState({
-      addWidgetVisible: true
-    })
-  }
-
-  showDetails (widget) {
-    this.setState({
-      activeWidget: widget,
-      detailsVisible: true
-    })
-  }
-
-  hideDetails () {
-    this.setState({
-      detailsVisible: false
-    })
-  }
-
   render () {
-    console.log(this.state)
     return (
       <div>
-        <Header />
-        <Homehero />
-        <Statslevel />
-        <Leaderboard users={this.state.users} />
-
+        <Route exact path="/" component={() => <Header />} />
+        <Route exact path="/" component={() => <Homehero />} />
+        <Route exact path="/" component={() => <Statslevel />} />
         <ErrorMessage error={this.state.error} />
-
-         <WidgetList
-           showDetails={this.showDetails.bind(this)}
-           widgets={this.state.widgets} /> */}
-
-        <p><a id='show-widget-link' href='#' onClick={(e) => this.showAddWidget(e)}>Add widget</a></p>
-
-        {this.state.addWidgetVisible && <AddWidget
-          finishAdd={this.refreshList.bind(this)} />}
-
-        {this.state.detailsVisible && <WidgetDetails
-          isVisible={this.state.detailsVisible}
-          hideDetails={this.hideDetails.bind(this)}
-          widget={this.state.activeWidget} />}
-
+        <Route exact path="/" component={() => <Leaderboard /> } />
+        <Route exact path="/" component={() => <Beersandmeme /> } />
+        <Route exact path='/beers' render={() => {
+          return <Beers />
+        }} /> 
+        <Footer />
       </div>
     )
   }
 }
+

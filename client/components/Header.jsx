@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 export default (props) => {
     return (
     <div>
@@ -9,7 +9,7 @@ export default (props) => {
                     <a className="navbar-item" href="/">
                     <img className="headerimg" src="/images/2beers.png" /></a>
                         <div className="navbar-start">
-                            <h1 className="title headertitle">Hold My Beer...</h1>
+                            <Link to='/'><h1 className="title headertitle">Hold My Beer...</h1></Link>
                         </div>
 
                         <button className="button navbar-burger">

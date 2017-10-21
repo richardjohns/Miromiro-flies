@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux'
 
-export default (props) => {
+const Beersandmeme = (props) => {
     return (
     <div>
         <div id="selection" className="has-text-centered">
@@ -19,13 +20,11 @@ export default (props) => {
     )
 }
 
+const mapStateToProps = ({ users, beers }) => {
+    return {
+        users,
+        beers
+    };
+};
 
-
-
-
-    // <div id="selection" className="has-text-centered">
-    //     <Link to="/beers">
-    //         <h3 className="button is-large">What's in the fridge?</h3>
-    //     </Link>
-    // </div>
-
+export default connect(mapStateToProps)(Beersandmeme)

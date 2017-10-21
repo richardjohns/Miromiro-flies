@@ -1,17 +1,13 @@
 import React from 'react' 
-
+import {connect} from 'react-redux'
 const Leaderboard =(props) => (
     // return (
 <div>
-    {console.log('This is leaderboard props: ', props)
-    
-    }
+    {console.log('This is leaderboard props: ', props)}
     <div className="">
         <h2>Hall of Fame...</h2>
         <br/>
     </div>
-
-    {/* {console.log('This is Leaderboard props: ', props)} */}
     {props.users.map((user, i) => {
         return (
     <div key={i}>
@@ -74,5 +70,11 @@ const Leaderboard =(props) => (
 </div>
         ) 
     
+const mapStateToProps = ({ users, beers }) => {
+    return {
+        users,
+        beers
+    };
+};
 
-export default Leaderboard
+export default connect(mapStateToProps)(Leaderboard)

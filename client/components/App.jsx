@@ -11,6 +11,7 @@ import Footer from './Footer'
 import Beersandmeme from './Beersandmeme'
 
 import { getBeers, getUsers } from '../api'
+
 export default class App extends React.Component {
   constructor (props) {
     super(props)
@@ -56,15 +57,6 @@ export default class App extends React.Component {
       })
   }
 
-  // renderWidgets (err, users, beers) {
-  
-  //   this.setState({
-  //     error: err,
-  //     users: users || [],
-  //     beers: beers || []
-  //   })
-  // }
-
   render () {
     return (
       <div>
@@ -82,3 +74,4 @@ export default class App extends React.Component {
     )
   }
 }
+

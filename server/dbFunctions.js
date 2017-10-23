@@ -21,42 +21,41 @@ function saveWidget (widget) {
     })
 }
 
-function getUsers() {
+function getUsers () {
   return knex('users').select()
 }
 
-function getUser(id, connection) {
+function getUser (id, connection) {
   return knex('users').where('id', id)
 }
 
-function getBeers() {
+function getBeers () {
   return knex('beers').select()
 }
 // return connection('beers').select()
 
-function getUsersPerBeer(id, connection) {
+function getUsersPerBeer (id, connection) {
   return knex('beers')
     .join('usersbeers', 'beers.beer_id', 'usersbeers.beer_id')
     .join('users', 'usersbeers.user_id', 'users.id')
     .join('usersbeerscomments', 'usersbeerscomments.user_id', 'users.id')
     .select('users.name', 'users.id', 'usertriesbeer',
-    'comment')
+      'comment')
     .where('beers.beer_id', id)
     .andWhere('usertriesbeer', true)
     .andWhere('usersbeerscomments.beer_id', id)
 }
 
-function getBeersPerUser(id, connection) {
+function getBeersPerUser (id, connection) {
   return knex('users')
     .join('usersbeers', 'users.id', 'usersbeers.user_id')
     .join('beers', 'usersbeers.beer_id', 'beers.beer_id')
     .select('beers.beer_type', 'beers.beer_brand', 'beers.beer_image', 'beers.image', 'beers.beer_bio', 'usertriesbeer')
     .where('users.id', id)
     .andWhere('usertriesbeer', true)
-
 }
 
-function addBeers(beer, connection) {
+function addBeers (beer, connection) {
   return knex('beers').insert(beer)
 }
 
@@ -68,5 +67,6 @@ module.exports = {
   getBeers: getBeers,
   getUsersPerBeer: getUsersPerBeer,
   getBeersPerUser: getBeersPerUser,
-  addBeers: addBeers
+  addBeers: addBeers,
+  knex: knex
 }

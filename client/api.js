@@ -2,7 +2,7 @@ import request from 'superagent'
 
 var usersUrl = 'http://localhost:3000/v1/users'
 var beersUrl = 'http://localhost:3000/v1/beers'
-var loginUrl = 'http://localhost:3000/v1/auth/register'
+var loginUrl = 'http://localhost:3000/v1/auth'
 
 // only concerned with data
 // getUsers(Callback) don't use as using promises.

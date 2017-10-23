@@ -18,7 +18,7 @@ app.use('/v1/widgets', widgets)
 app.use('/v1/beers', beers)
 app.use('/v1/users', users)
 // API - this one calls from db
-app.use('/v1/auth/register', login)
+app.use('/v1/auth', login)
 
 // Handles all routes so you do not get a not found error
 app.get('*', function (request, response) {

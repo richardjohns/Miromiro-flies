@@ -24,7 +24,16 @@ function createUser (username, password) {
     .insert({username, hash: passwordHash})
 }
 
+function getUserByName(username, conn) {
+  const db = conn || connection
+  return db('users')
+    .select()
+    .where('username', username)
+    .first()
+}
+
 module.exports = {
   userExists: userExists,
-  createUser: createUser
+  createUser: createUser,
+  getUserByName: getUserByName
 }

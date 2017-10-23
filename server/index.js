@@ -1,3 +1,4 @@
+require('dotenv').config()
 var server = require('./server')
 
 var PORT = process.env.PORT || 3000
@@ -16,4 +17,3 @@ var connection = require('knex')(config)
 // var server = createServer(connection)
 
 module.exports = connection
-
